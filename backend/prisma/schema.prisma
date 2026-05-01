@@ -1,0 +1,46 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String
+  inviteCode    String    @unique @default(cuid())
+  duoId         String?
+  duo           Duo?      @relation(fields: [duoId], references: [id])
+  workouts      Workout[]
+  steps         StepLog[]
+  createdAt     DateTime  @default(now())
+}
+
+model Duo {
+  id                 String   @id @default(uuid())
+  users              User[]
+  sharedStreak       Int      @default(0)
+  lastStreakUpdate   DateTime @default(now())
+  weeklyMvpId        String?
+  createdAt          DateTime @default(now())
+}
+
+model Workout {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String   // e.g., "Leg Day"
+  volume    Float    @default(0) // Total kg lifted
+  timestamp DateTime @default(now())
+}
+
+model StepLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  count     Int
+  date      DateTime @default(now())
+}
