@@ -1,29 +1,31 @@
 import { Router } from 'express';
 import { WorkoutService } from '../services/WorkoutService';
+import { validate } from '../middleware/validate';
+import { createWorkoutSchema, getWorkoutHistorySchema } from '../validations/workout.schema';
+import { asyncHandler } from '../utils/asyncHandler';
 
 const router = Router();
 
-router.post('/', async (req, res) => {
-  try {
+// Log a workout
+router.post(
+  '/',
+  validate(createWorkoutSchema),
+  asyncHandler(async (req: any, res: any) => {
     const { userId, type, weight, reps } = req.body;
-    if (!userId || !type || weight === undefined || reps === undefined) {
-      return res.status(400).json({ error: 'userId, type, weight, and reps are required' });
-    }
-    const workout = await WorkoutService.createWorkout(userId, type, Number(weight), Number(reps));
+    const workout = await WorkoutService.createWorkout(userId, type, weight, reps);
     res.status(201).json(workout);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to create workout' });
-  }
-});
+  })
+);
 
-router.get('/history/:userId', async (req, res) => {
-  try {
+// Get workout history for a user
+router.get(
+  '/history/:userId',
+  validate(getWorkoutHistorySchema),
+  asyncHandler(async (req: any, res: any) => {
     const { userId } = req.params;
-    const workouts = await WorkoutService.getUserWorkouts(userId);
+    const workouts = await WorkoutService.getUserWorkouts(userId as string);
     res.json(workouts);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch workouts' });
-  }
-});
+  })
+);
 
 export default router;
