@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from './lib/prisma';
 
 async function testInvitation() {
   console.log("Starting invitation test...");

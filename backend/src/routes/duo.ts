@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/prisma';
 
-const prisma = new PrismaClient();
 const router = Router();
 
 // Accept an invite code
@@ -11,6 +10,10 @@ router.post('/accept', async (req, res) => {
   try {
     const partner = await prisma.user.findUnique({ where: { inviteCode } });
     if (!partner || partner.duoId) return res.status(400).json({ error: "Invalid invite" });
+
+    if (userId === partner.id) {
+      return res.status(400).json({ error: "You cannot duo with yourself" });
+    }
 
     // Ensure the current user isn't already in a duo
     const currentUser = await prisma.user.findUnique({ where: { id: userId } });
