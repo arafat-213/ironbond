@@ -2,10 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Dumbbell, History, Footprints } from 'lucide-react-native';
 import DashboardScreen from '../screens/DashboardScreen';
+import WorkoutLoggerScreen from '../screens/WorkoutLoggerScreen';
+import WorkoutHistoryScreen from '../screens/WorkoutHistoryScreen';
 import { Colors } from '../theme/colors';
-
-// Placeholders for screens not yet implemented
-const Placeholder = () => null;
 
 const Tab = createBottomTabNavigator();
 
@@ -33,9 +32,9 @@ export default function TabNavigator() {
       })}
     >
       <Tab.Screen name="Home" component={DashboardScreen} />
-      <Tab.Screen name="Workout" component={Placeholder} />
-      <Tab.Screen name="History" component={Placeholder} />
-      <Tab.Screen name="Steps" component={Placeholder} />
+      <Tab.Screen name="Workout" component={WorkoutLoggerScreen} />
+      <Tab.Screen name="History" component={WorkoutHistoryScreen} />
+      <Tab.Screen name="Steps" component={DashboardScreen} />
     </Tab.Navigator>
   );
 }
