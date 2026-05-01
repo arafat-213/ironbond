@@ -6,6 +6,7 @@ import workoutRoutes from './routes/workout';
 import statsRoutes from './routes/stats';
 import stepRoutes from './routes/steps';
 import { initStreakCron } from './jobs/streakCron';
+import { initMvpCron } from './jobs/mvpCron';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 
 // Initialize jobs
 initStreakCron();
+initMvpCron();
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
