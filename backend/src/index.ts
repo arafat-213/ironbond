@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import duoRoutes from './routes/duo';
 import workoutRoutes from './routes/workout';
 import statsRoutes from './routes/stats';
+import stepRoutes from './routes/steps';
 import { initStreakCron } from './jobs/streakCron';
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/api/duo', duoRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/steps', stepRoutes);
 
 app.get('/', (req, res) => {
   res.send('Gym Duo API is running');
