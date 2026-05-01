@@ -5,11 +5,11 @@ const router = Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { userId, type, volume } = req.body;
-    if (!userId || !type || volume === undefined) {
-      return res.status(400).json({ error: 'userId, type, and volume are required' });
+    const { userId, type, weight, reps } = req.body;
+    if (!userId || !type || weight === undefined || reps === undefined) {
+      return res.status(400).json({ error: 'userId, type, weight, and reps are required' });
     }
-    const workout = await WorkoutService.createWorkout(userId, type, volume);
+    const workout = await WorkoutService.createWorkout(userId, type, Number(weight), Number(reps));
     res.status(201).json(workout);
   } catch (error) {
     res.status(500).json({ error: 'Failed to create workout' });

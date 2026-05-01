@@ -1,7 +1,8 @@
 import prisma from '../lib/prisma';
 
 export class WorkoutService {
-  static async createWorkout(userId: string, type: string, volume: number) {
+  static async createWorkout(userId: string, type: string, weight: number, reps: number) {
+    const volume = weight * reps;
     return prisma.workout.create({
       data: {
         userId,
