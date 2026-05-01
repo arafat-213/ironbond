@@ -1,20 +1,7 @@
-export const typography = {
-  fonts: {
-    headline: 'Lexend',
-    body: 'Inter',
-  },
-  sizes: {
-    displayXL: 48,
-    statsNumber: 40,
-    headlineLarge: 32,
-    bodyLarge: 18,
-    bodyMedium: 16,
-  },
-  weights: {
-    displayXL: '800',
-    statsNumber: '800',
-    headlineLarge: '700',
-    bodyLarge: '400', // Assuming default weight for body if not specified
-    bodyMedium: '400',
-  },
+export const Typography = {
+  h1: { fontSize: 32, fontWeight: 'bold' as const },
+  h2: { fontSize: 24, fontWeight: 'bold' as const },
+  h3: { fontSize: 18, fontWeight: 'bold' as const },
+  body: { fontSize: 16 },
+  caption: { fontSize: 12 },
 };

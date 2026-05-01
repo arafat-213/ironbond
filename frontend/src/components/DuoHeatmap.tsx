@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { colors } from '../theme/colors';
-import { typography } from '../theme/typography';
+import { Colors } from '../theme/colors';
+import { Typography } from '../theme/typography';
 
 interface DuoHeatmapProps {
   meHeatScore: number; // 0 to 1
@@ -22,7 +22,7 @@ const Silhouette = ({ color }: { color: string }) => (
 const getHeatColor = (score: number) => {
   // Interpolate between surface-container-highest (#353437) and Intensity Red (#ff0000)
   // For simplicity, if score > 0.8 use red, else use a dimmed version
-  if (score === 0) return colors.surface.variant;
+  if (score === 0) return Colors.surface;
   
   // Basic interpolation logic (just a simple approximation)
   const r = Math.floor(53 + (255 - 53) * score);
@@ -51,7 +51,7 @@ export const DuoHeatmap: React.FC<DuoHeatmapProps> = ({
         </View>
         <View style={styles.heatmapItem}>
           <Text style={styles.label}>{partnerName}</Text>
-          <View style={[styles.silhouetteContainer, { backgroundColor: partnerHeatScore > 0.5 ? colors.secondary.container : colors.surface.variant }]}>
+          <View style={[styles.silhouetteContainer, { backgroundColor: partnerHeatScore > 0.5 ? Colors.secondary : Colors.surface }]}>
              <Silhouette color={getHeatColor(partnerHeatScore)} />
           </View>
         </View>
@@ -62,7 +62,7 @@ export const DuoHeatmap: React.FC<DuoHeatmapProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.surface.container,
+    backgroundColor: Colors.surface,
     borderRadius: 24,
     padding: 24,
   },
@@ -73,15 +73,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: {
-    fontFamily: typography.fonts.headline,
-    fontSize: typography.sizes.headlineLarge * 0.75, // headline-md approx
-    fontWeight: typography.weights.headlineLarge as any,
-    color: colors.primary.main,
+    fontSize: Typography.h3.fontSize,
+    fontWeight: Typography.h3.fontWeight,
+    color: Colors.primary,
   },
   subtitle: {
-    fontFamily: typography.fonts.body,
-    fontSize: 12,
-    color: colors.outline,
+    fontSize: Typography.caption.fontSize,
+    color: Colors.outline,
   },
   heatmapsRow: {
     flexDirection: 'row',
@@ -92,13 +90,13 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   label: {
-    fontFamily: typography.fonts.headline,
     fontSize: 14,
-    color: colors.primary.main,
+    fontWeight: 'bold',
+    color: Colors.primary,
   },
   silhouetteContainer: {
     height: 96,
-    backgroundColor: colors.surface.variant,
+    backgroundColor: Colors.surface,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',

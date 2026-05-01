@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background, padding: 20 },
   title: { ...Typography.h1, color: Colors.text, marginBottom: 30, marginTop: 40 },
   inputGroup: { marginBottom: 20 },
-  label: { ...Typography.caption, color: Colors.primary, marginBottom: 8 },
+  label: { ...Typography.caption, color: Colors.primary as string, marginBottom: 8 },
   input: { 
     backgroundColor: Colors.surface, 
     borderRadius: 12, 
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     borderColor: '#333'
   },
   button: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.primary as string,
     padding: 18,
     borderRadius: 12,
     flexDirection: 'row',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import { colors } from '../theme/colors';
-import { typography } from '../theme/typography';
+import { Colors } from '../theme/colors';
+import { Typography } from '../theme/typography';
 import { SharedStreak } from '../components/SharedStreak';
 import { DuoHeatmap } from '../components/DuoHeatmap';
 import { Settings, Trophy, Footprints } from 'lucide-react-native';
@@ -25,7 +25,7 @@ interface DuoStatus {
   };
 }
 
-export const DashboardScreen = () => {
+export default function DashboardScreen() {
   const [status, setStatus] = useState<DuoStatus | null>(null);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export const DashboardScreen = () => {
             <Text style={styles.appName}>GYM BUDDY</Text>
           </View>
           <TouchableOpacity>
-            <Settings color={colors.outline} size={24} />
+            <Settings color={Colors.outline} size={24} />
           </TouchableOpacity>
         </View>
 
@@ -93,7 +93,7 @@ export const DashboardScreen = () => {
 
         {/* Weekly MVP */}
         <View style={styles.mvpCard}>
-          <Trophy size={80} color={colors.primary.onPrimary} style={styles.mvpIcon} />
+          <Trophy size={80} color={Colors.primary} style={styles.mvpIcon} />
           <Text style={styles.mvpLabel}>WEEKLY MVP</Text>
           <Text style={styles.mvpName}>{status.weeklyMVP.name}</Text>
           <Text style={styles.mvpStat}>{status.weeklyMVP.stat}</Text>
@@ -113,26 +113,26 @@ export const DashboardScreen = () => {
           <View style={styles.rivalryItem}>
             <View style={styles.rivalryInfo}>
               <View style={styles.rivalryLabelGroup}>
-                <Footprints size={20} color={colors.primary.container} />
+                <Footprints size={20} color={Colors.primary} />
                 <Text style={styles.rivalryLabel}>Me</Text>
               </View>
               <Text style={styles.rivalryValue}>{status.steps.me.toLocaleString()}</Text>
             </View>
             <View style={styles.progressBarBg}>
-              <View style={[styles.progressBarFill, { width: `${meStepWidth}%`, backgroundColor: colors.primary.container }]} />
+              <View style={[styles.progressBarFill, { width: `${meStepWidth}%`, backgroundColor: Colors.primary }]} />
             </View>
           </View>
 
           <View style={styles.rivalryItem}>
             <View style={styles.rivalryInfo}>
               <View style={styles.rivalryLabelGroup}>
-                <Footprints size={20} color={colors.secondary.main} />
+                <Footprints size={20} color={Colors.secondary} />
                 <Text style={styles.rivalryLabel}>{status.partnerName}</Text>
               </View>
               <Text style={styles.rivalryValue}>{status.steps.partner.toLocaleString()}</Text>
             </View>
             <View style={styles.progressBarBg}>
-              <View style={[styles.progressBarFill, { width: `${partnerStepWidth}%`, backgroundColor: colors.secondary.main }]} />
+              <View style={[styles.progressBarFill, { width: `${partnerStepWidth}%`, backgroundColor: Colors.secondary }]} />
             </View>
           </View>
         </View>
@@ -144,7 +144,7 @@ export const DashboardScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: colors.surface.background,
+    backgroundColor: Colors.background,
   },
   container: {
     padding: 20,
@@ -168,14 +168,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   appName: {
-    fontFamily: typography.fonts.headline,
     fontSize: 20,
     fontWeight: '700',
-    color: colors.primary.main,
+    color: Colors.primary,
     letterSpacing: 1,
   },
   mvpCard: {
-    backgroundColor: colors.primary.container,
+    backgroundColor: Colors.primary,
     borderRadius: 24,
     padding: 24,
     position: 'relative',
@@ -188,37 +187,33 @@ const styles = StyleSheet.create({
     opacity: 0.1,
   },
   mvpLabel: {
-    fontFamily: typography.fonts.headline,
     fontSize: 14,
     fontWeight: '600',
-    color: colors.primary.onPrimary,
+    color: Colors.background,
     letterSpacing: 1,
     marginBottom: 4,
   },
   mvpName: {
-    fontFamily: typography.fonts.headline,
-    fontSize: typography.sizes.displayXL,
+    fontSize: Typography.h1.fontSize,
     fontWeight: '800',
-    color: colors.primary.onPrimary,
-    lineHeight: typography.sizes.displayXL,
+    color: Colors.background,
+    lineHeight: Typography.h1.fontSize,
   },
   mvpStat: {
-    fontFamily: typography.fonts.headline,
-    fontSize: typography.sizes.headlineLarge * 0.75,
+    fontSize: Typography.h2.fontSize,
     fontWeight: '700',
-    color: colors.primary.onPrimary,
+    color: Colors.background,
   },
   rivalryCard: {
-    backgroundColor: colors.surface.container,
+    backgroundColor: Colors.surface,
     borderRadius: 24,
     padding: 24,
     gap: 16,
   },
   rivalryTitle: {
-    fontFamily: typography.fonts.headline,
-    fontSize: typography.sizes.headlineLarge * 0.75,
+    fontSize: Typography.h3.fontSize,
     fontWeight: '700',
-    color: colors.primary.main,
+    color: Colors.primary,
   },
   rivalryItem: {
     gap: 8,
@@ -234,19 +229,17 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   rivalryLabel: {
-    fontFamily: typography.fonts.body,
-    fontSize: 18,
-    color: colors.primary.main,
+    fontSize: Typography.body.fontSize,
+    color: Colors.primary,
   },
   rivalryValue: {
-    fontFamily: typography.fonts.headline,
     fontSize: 24,
     fontWeight: '700',
-    color: colors.primary.main,
+    color: Colors.primary,
   },
   progressBarBg: {
     height: 8,
-    backgroundColor: colors.surface.variant,
+    backgroundColor: Colors.surface,
     borderRadius: 4,
     overflow: 'hidden',
   },

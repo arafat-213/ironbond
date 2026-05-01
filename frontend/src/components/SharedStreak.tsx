@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { colors } from '../theme/colors';
-import { typography } from '../theme/typography';
+import { Colors } from '../theme/colors';
+import { Typography } from '../theme/typography';
 
 interface SharedStreakProps {
   streakCount: number;
@@ -35,7 +35,7 @@ export const SharedStreak: React.FC<SharedStreakProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.surface.container,
+    backgroundColor: Colors.surface,
     borderRadius: 24,
     padding: 24,
     flexDirection: 'row',
@@ -51,24 +51,21 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   streakNumber: {
-    fontFamily: typography.fonts.headline,
-    fontSize: typography.sizes.statsNumber,
-    fontWeight: typography.weights.statsNumber as any,
-    color: colors.primary.container,
-    lineHeight: typography.sizes.statsNumber,
+    fontSize: Typography.h1.fontSize,
+    fontWeight: Typography.h1.fontWeight,
+    color: Colors.primary,
+    lineHeight: Typography.h1.fontSize,
   },
   streakLabel: {
-    fontFamily: typography.fonts.body,
     fontSize: 14,
-    color: colors.outline, // Using outline as on-surface-variant equivalent
+    color: Colors.outline, // Using outline as on-surface-variant equivalent
   },
   statusContainer: {
     maxWidth: 140,
   },
   statusText: {
-    fontFamily: typography.fonts.body,
-    fontSize: typography.sizes.bodyMedium,
-    color: colors.primary.main,
+    fontSize: Typography.body.fontSize,
+    color: Colors.primary,
     textAlign: 'right',
   },
   boldText: {

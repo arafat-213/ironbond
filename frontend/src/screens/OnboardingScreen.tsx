@@ -8,8 +8,8 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors } from '../theme/colors';
-import { typography } from '../theme/typography';
+import { Colors } from '../theme/colors';
+import { Typography } from '../theme/typography';
 import { StatusBar } from 'expo-status-bar';
 
 const { width } = Dimensions.get('window');
@@ -70,7 +70,7 @@ const OnboardingScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.surface.background,
+    backgroundColor: Colors.background,
   },
   backgroundImage: {
     flex: 1,
@@ -91,19 +91,17 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   title: {
-    fontFamily: typography.fonts.headline,
-    fontSize: typography.sizes.displayXL,
-    fontWeight: typography.weights.displayXL as any,
-    color: colors.primary.container,
+    fontSize: Typography.h1.fontSize,
+    fontWeight: Typography.h1.fontWeight,
+    color: Colors.primary,
     fontStyle: 'italic',
     textShadowColor: 'rgba(195, 244, 0, 0.4)',
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 12,
   },
   subtitle: {
-    fontFamily: typography.fonts.body,
-    fontSize: typography.sizes.bodyMedium,
-    color: colors.primary.main,
+    fontSize: Typography.body.fontSize,
+    color: Colors.primary,
     textAlign: 'center',
     marginTop: 8,
     opacity: 0.8,
@@ -122,9 +120,8 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   featureText: {
-    color: colors.primary.main,
-    fontFamily: typography.fonts.body,
-    fontSize: typography.sizes.bodyMedium,
+    color: Colors.primary,
+    fontSize: Typography.body.fontSize,
     fontWeight: '600',
   },
   actions: {
@@ -140,15 +137,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   primaryButton: {
-    backgroundColor: colors.primary.container,
-    shadowColor: colors.primary.container,
+    backgroundColor: Colors.primary,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.3,
     shadowRadius: 20,
     elevation: 5,
   },
   primaryButtonText: {
-    color: colors.surface.background,
+    color: Colors.background,
     fontWeight: 'bold',
     textTransform: 'uppercase',
     letterSpacing: 1.5,
@@ -156,10 +153,10 @@ const styles = StyleSheet.create({
   secondaryButton: {
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: colors.outline,
+    borderColor: Colors.outline,
   },
   secondaryButtonText: {
-    color: colors.primary.main,
+    color: Colors.primary,
     fontWeight: 'bold',
     textTransform: 'uppercase',
     letterSpacing: 1.5,
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   skipText: {
-    color: colors.primary.main,
+    color: Colors.primary,
     opacity: 0.6,
     textDecorationLine: 'underline',
   },

@@ -20,8 +20,8 @@ export default function TabNavigator() {
           height: 60,
           paddingBottom: 10,
         },
-        tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: Colors.textSecondary,
+        tabBarActiveTintColor: Colors.primary as string,
+        tabBarInactiveTintColor: Colors.textSecondary as string,
         tabBarIcon: ({ color, size }) => {
           if (route.name === 'Home') return <Home color={color} size={size} />;
           if (route.name === 'Workout') return <Dumbbell color={color} size={size} />;

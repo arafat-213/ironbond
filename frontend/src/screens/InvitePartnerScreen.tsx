@@ -11,8 +11,8 @@ import {
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors } from '../theme/colors';
-import { typography } from '../theme/typography';
+import { Colors } from '../theme/colors';
+import { Typography } from '../theme/typography';
 import { Share2, UserPlus, Settings } from 'lucide-react-native';
 import { StatusBar } from 'expo-status-bar';
 
@@ -39,7 +39,7 @@ const InvitePartnerScreen = ({ navigation }: any) => {
         <View style={styles.profilePlaceholder} />
         <Text style={styles.brandTitle}>GYM BUDDY</Text>
         <TouchableOpacity>
-          <Settings size={24} color={colors.primary.main} opacity={0.5} />
+          <Settings size={24} color={Colors.primary} opacity={0.5} />
         </TouchableOpacity>
       </View>
 
@@ -60,7 +60,7 @@ const InvitePartnerScreen = ({ navigation }: any) => {
             <Text style={styles.cardLabel}>YOUR INVITE CODE</Text>
             <Text style={styles.inviteCode}>{myInviteCode}</Text>
             <TouchableOpacity style={styles.shareButton} onPress={onShare}>
-              <Share2 size={20} color={colors.surface.background} />
+              <Share2 size={20} color={Colors.background} />
               <Text style={styles.shareButtonText}>SHARE CODE</Text>
             </TouchableOpacity>
           </View>
@@ -83,7 +83,7 @@ const InvitePartnerScreen = ({ navigation }: any) => {
               autoCapitalize="characters"
             />
             <TouchableOpacity style={styles.connectButton}>
-              <UserPlus size={20} color={colors.primary.main} />
+              <UserPlus size={20} color={Colors.primary} />
               <Text style={styles.connectButtonText}>CONNECT PARTNER</Text>
             </TouchableOpacity>
           </View>
@@ -96,7 +96,7 @@ const InvitePartnerScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.surface.background,
+    backgroundColor: Colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -114,10 +114,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
   brandTitle: {
-    fontFamily: typography.fonts.headline,
     fontSize: 20,
     fontWeight: '900',
-    color: colors.primary.container,
+    color: Colors.primary,
     fontStyle: 'italic',
   },
   scrollContent: {
@@ -130,16 +129,14 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   title: {
-    fontFamily: typography.fonts.headline,
-    fontSize: typography.sizes.headlineLarge,
+    fontSize: Typography.h1.fontSize,
     fontWeight: 'bold',
-    color: colors.primary.main,
+    color: Colors.primary,
     marginBottom: 8,
   },
   subtitle: {
-    fontFamily: typography.fonts.body,
-    fontSize: typography.sizes.bodyMedium,
-    color: colors.primary.main,
+    fontSize: Typography.body.fontSize,
+    color: Colors.primary,
     textAlign: 'center',
     opacity: 0.6,
   },
@@ -154,22 +151,21 @@ const styles = StyleSheet.create({
   },
   cardLabel: {
     fontSize: 12,
-    color: colors.primary.main,
+    color: Colors.primary,
     opacity: 0.5,
     letterSpacing: 2,
     marginBottom: 16,
   },
   inviteCode: {
-    fontFamily: typography.fonts.headline,
     fontSize: 48,
     fontWeight: '800',
-    color: colors.primary.container,
+    color: Colors.primary,
     letterSpacing: 8,
     marginBottom: 24,
   },
   shareButton: {
     flexDirection: 'row',
-    backgroundColor: colors.primary.container,
+    backgroundColor: Colors.primary,
     width: '100%',
     paddingVertical: 16,
     borderRadius: 12,
@@ -178,7 +174,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   shareButtonText: {
-    color: colors.surface.background,
+    color: Colors.background,
     fontWeight: 'bold',
     letterSpacing: 1.5,
   },
@@ -194,7 +190,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
   separatorText: {
-    color: colors.primary.main,
+    color: Colors.primary,
     opacity: 0.3,
     fontSize: 12,
     fontWeight: 'bold',
@@ -206,7 +202,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 12,
     padding: 16,
-    color: colors.primary.main,
+    color: Colors.primary,
     fontSize: 18,
     textAlign: 'center',
     marginBottom: 16,
@@ -224,7 +220,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   connectButtonText: {
-    color: colors.primary.main,
+    color: Colors.primary,
     fontWeight: 'bold',
     letterSpacing: 1.5,
   },

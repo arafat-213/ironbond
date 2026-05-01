@@ -7,7 +7,7 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:3000/api';
 
 export default function WorkoutHistoryScreen() {
-  const [workouts, setWorkouts] = useState([]);
+  const [workouts, setWorkouts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function WorkoutHistoryScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Workout History</Text>
       {loading ? (
-        <ActivityIndicator color={Colors.primary} size="large" />
+        <ActivityIndicator color={Colors.primary as string} size="large" />
       ) : (
         <FlatList
           data={workouts}
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
   },
   workoutType: { ...Typography.h3, color: Colors.text },
   date: { ...Typography.caption, color: Colors.textSecondary },
-  volume: { color: Colors.primary, fontWeight: 'bold', fontSize: 18 },
+  volume: { color: Colors.primary as string, fontWeight: 'bold', fontSize: 18 },
   label: { fontSize: 10, color: Colors.textSecondary, textTransform: 'uppercase' }
 });
