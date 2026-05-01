@@ -1,4 +1,4 @@
-# Gym Buddy: Phase 1 - Backend Foundation Implementation Plan
+# IronBond: Phase 1 - Backend Foundation Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -20,7 +20,7 @@
 
 - [ ] **Step 1: Initialize package.json and install dependencies**
 ```bash
-cd /home/bacancy/Desktop/Projects/side/gym-duo/backend
+cd /home/bacancy/Desktop/Projects/side/ironbond/backend
 npm init -y
 npm install express @prisma/client dotenv cors
 npm install --save-dev typescript @types/node @types/express @types/cors ts-node-dev prisma

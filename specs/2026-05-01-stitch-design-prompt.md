@@ -1,6 +1,6 @@
-# Gym Buddy: Design Prompt for Google Stitch
+# IronBond: Design Prompt for Google Stitch
 
-**Project:** Gym Buddy (Duo Hub)
+**Project:** IronBond (Duo Hub)
 **Concept:** A collaborative, gamified gym app for partners/couples.
 **Visual Style:** Modern, energetic, dark-mode friendly (neon accents), focused on "Progress Visuals" (Heatmaps, Progress Bars).
 

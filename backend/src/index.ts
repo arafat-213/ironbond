@@ -36,7 +36,7 @@ app.use('/api/stats', statsRoutes);
 app.use('/api/steps', stepRoutes);
 
 app.get('/', (req, res) => {
-  res.send('Gym Duo API is running');
+  res.send('IronBond API is running');
 });
 
 // Initialize jobs

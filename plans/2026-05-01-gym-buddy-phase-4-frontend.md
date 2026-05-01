@@ -1,4 +1,4 @@
-# Gym Buddy: Phase 4 - Frontend (The Duo Hub) Implementation Plan
+# IronBond: Phase 4 - Frontend (The Duo Hub) Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -19,7 +19,7 @@
 
 - [ ] **Step 1: Initialize Expo Project**
 ```bash
-cd /home/bacancy/Desktop/Projects/side/gym-duo
+cd /home/bacancy/Desktop/Projects/side/ironbond
 npx create-expo-app@latest frontend --template blank-typescript
 cd frontend
 npm install @react-navigation/native @react-navigation/bottom-tabs react-native-screens react-native-safe-area-context axios lucide-react-native

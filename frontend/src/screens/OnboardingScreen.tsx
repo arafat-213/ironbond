@@ -26,7 +26,7 @@ const OnboardingScreen = ({ navigation }: any) => {
         <View style={styles.overlay}>
           <SafeAreaView style={styles.safeArea}>
             <View style={styles.header}>
-              <Text style={styles.title}>GYM BUDDY</Text>
+              <Text style={styles.title}>IRONBOND</Text>
               <Text style={styles.subtitle}>
                 Dominate the iron together. Built for couples who compete to grow.
               </Text>

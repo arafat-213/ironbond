@@ -1,11 +1,11 @@
-# Gym Buddy Design Specification: The Duo Hub
+# IronBond Design Specification: The Duo Hub
 
 **Date:** 2026-05-01
-**Topic:** Gym Buddy App - Collaborative Fitness Tracking
+**Topic:** IronBond App - Collaborative Fitness Tracking
 **Status:** Approved (Brainstorming Phase)
 
 ## 1. Vision & Purpose
-Gym Buddy is a fitness application designed fundamentally for partners and couples. While it provides high-quality individual workout tracking, its "soul" lies in the collaborative experience. It aims to solve the "motivation gap" by creating a shared accountability system where your fitness progress directly impacts your partner's experience and vice versa.
+IronBond is a fitness application designed fundamentally for partners and couples. While it provides high-quality individual workout tracking, its "soul" lies in the collaborative experience. It aims to solve the "motivation gap" by creating a shared accountability system where your fitness progress directly impacts your partner's experience and vice versa.
 
 ## 2. Core Mechanics
 

@@ -1,4 +1,4 @@
-# Gym Buddy: Backend Best Practices Polish Implementation Plan
+# IronBond: Backend Best Practices Polish Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -22,7 +22,7 @@
 
 - [ ] **Step 1: Install Dependencies**
 ```bash
-cd /home/bacancy/Desktop/Projects/side/gym-duo/backend
+cd /home/bacancy/Desktop/Projects/side/ironbond/backend
 npm install zod helmet express-rate-limit
 ```
 

@@ -23,7 +23,7 @@ const InvitePartnerScreen = ({ navigation }: any) => {
   const onShare = async () => {
     try {
       await Share.share({
-        message: `Join me on Gym Buddy! My invite code is: ${myInviteCode}`,
+        message: `Join me on IronBond! My invite code is: ${myInviteCode}`,
       });
     } catch (error) {
       console.log(error);
@@ -37,7 +37,7 @@ const InvitePartnerScreen = ({ navigation }: any) => {
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.profilePlaceholder} />
-        <Text style={styles.brandTitle}>GYM BUDDY</Text>
+        <Text style={styles.brandTitle}>IRONBOND</Text>
         <TouchableOpacity>
           <Settings size={24} color={Colors.primary} opacity={0.5} />
         </TouchableOpacity>

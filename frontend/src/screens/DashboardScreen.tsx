@@ -77,7 +77,7 @@ export default function DashboardScreen() {
               source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBKpg17O-t9XpkWT7Y5CqqXKBI2MT7ushLUJD5cF4Z26cFM9bxjXpHkw_h9R4ilyB43y8tuFVzUKEqlnV7F8z1tos0sawsjDZaWdp8ejvldNK_jPhH0Wt4V_fCzF1HhYAD1kdqE-4oUxCGcXdnL2mJKN8EddLhRbNP5atnCsbzNUjFe6Dj-siNWgG2CjQzmgygCfAjTYApIB-SO4_TNcfTci63fVC-EnWEzoWA-_AqzBfskwTR3ec11qtviPqphSZUq4FpO-MBIf7E' }}
               style={styles.profileImage}
             />
-            <Text style={styles.appName}>GYM BUDDY</Text>
+            <Text style={styles.appName}>IRONBOND</Text>
           </View>
           <TouchableOpacity>
             <Settings color={Colors.outline} size={24} />
