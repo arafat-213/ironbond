@@ -6,8 +6,14 @@ export class StreakService {
       include: { users: true }
     });
 
-    // We check for workouts logged in the "yesterday" UTC window
-    const yesterdayStart = new Date();
+    const now = new Date();
+    
+    // Today boundary (to prevent multiple runs)
+    const todayStart = new Date(now);
+    todayStart.setUTCHours(0, 0, 0, 0);
+
+    // Yesterday boundaries
+    const yesterdayStart = new Date(now);
     yesterdayStart.setUTCDate(yesterdayStart.getUTCDate() - 1);
     yesterdayStart.setUTCHours(0, 0, 0, 0);
 
@@ -15,35 +21,48 @@ export class StreakService {
     yesterdayEnd.setUTCHours(23, 59, 59, 999);
 
     for (const duo of duos) {
-      if (duo.users.length !== 2) continue;
+      try {
+        if (duo.users.length !== 2) continue;
 
-      let bothWorkedOut = true;
-      for (const user of duo.users) {
-        const workoutCount = await prisma.workout.count({
-          where: {
-            userId: user.id,
-            timestamp: { gte: yesterdayStart, lte: yesterdayEnd }
-          }
-        });
-        if (workoutCount === 0) {
-          bothWorkedOut = false;
-          break;
+        // Idempotency: skip if already evaluated today
+        if (duo.lastStreakUpdate >= todayStart) {
+          continue;
         }
-      }
 
-      if (bothWorkedOut) {
-        await prisma.duo.update({
-          where: { id: duo.id },
-          data: {
-            sharedStreak: { increment: 1 },
-            lastStreakUpdate: new Date()
+        let bothWorkedOut = true;
+        for (const user of duo.users) {
+          const workoutCount = await prisma.workout.count({
+            where: {
+              userId: user.id,
+              timestamp: { gte: yesterdayStart, lte: yesterdayEnd }
+            }
+          });
+          
+          if (workoutCount === 0) {
+            bothWorkedOut = false;
+            break;
           }
-        });
-      } else {
-        await prisma.duo.update({
-          where: { id: duo.id },
-          data: { sharedStreak: 0 }
-        });
+        }
+
+        if (bothWorkedOut) {
+          await prisma.duo.update({
+            where: { id: duo.id },
+            data: {
+              sharedStreak: { increment: 1 },
+              lastStreakUpdate: now
+            }
+          });
+        } else {
+          await prisma.duo.update({
+            where: { id: duo.id },
+            data: { 
+              sharedStreak: 0,
+              lastStreakUpdate: now 
+            }
+          });
+        }
+      } catch (error) {
+        console.error(`Error evaluating duo ${duo.id}:`, error);
       }
     }
   }
