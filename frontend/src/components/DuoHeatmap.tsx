@@ -20,11 +20,13 @@ const Silhouette = ({ color }: { color: string }) => (
 );
 
 const getHeatColor = (score: number) => {
-  // Interpolate between surface-container-highest (#353437) and Intensity Red (#ff0000)
-  // For simplicity, if score > 0.8 use red, else use a dimmed version
-  if (score === 0) return Colors.surface;
+  if (score === 0) return Colors.surfaceContainerHighest;
   
-  // Basic interpolation logic (just a simple approximation)
+  // Interpolate between surfaceContainerHighest (#353437) and Intensity Red (#ff0000)
+  // For simplicity, we use the peak Intensity Red at max score
+  if (score > 0.8) return Colors.intensityRed;
+  
+  // Basic interpolation for visual representation
   const r = Math.floor(53 + (255 - 53) * score);
   const g = Math.floor(52 + (0 - 52) * score);
   const b = Math.floor(55 + (0 - 55) * score);
@@ -51,7 +53,7 @@ export const DuoHeatmap: React.FC<DuoHeatmapProps> = ({
         </View>
         <View style={styles.heatmapItem}>
           <Text style={styles.label}>{partnerName}</Text>
-          <View style={[styles.silhouetteContainer, { backgroundColor: partnerHeatScore > 0.5 ? Colors.secondary : Colors.surface }]}>
+          <View style={styles.silhouetteContainer}>
              <Silhouette color={getHeatColor(partnerHeatScore)} />
           </View>
         </View>
@@ -62,7 +64,9 @@ export const DuoHeatmap: React.FC<DuoHeatmapProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.glassSurface,
+    borderColor: Colors.glassBorder,
+    borderWidth: 1,
     borderRadius: 24,
     padding: 24,
   },
@@ -73,13 +77,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: {
-    fontSize: Typography.h3.fontSize,
-    fontWeight: Typography.h3.fontWeight,
-    color: Colors.primary,
+    ...Typography.headlineMd,
+    color: Colors.text,
   },
   subtitle: {
-    fontSize: Typography.caption.fontSize,
-    color: Colors.outline,
+    ...Typography.bodyMd,
+    color: Colors.textDim,
   },
   heatmapsRow: {
     flexDirection: 'row',
@@ -87,18 +90,20 @@ const styles = StyleSheet.create({
   },
   heatmapItem: {
     flex: 1,
-    gap: 8,
+    gap: 12,
   },
   label: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: Colors.primary,
+    ...Typography.labelBold,
+    color: Colors.textDim,
+    textAlign: 'center',
   },
   silhouetteContainer: {
-    height: 96,
-    backgroundColor: Colors.surface,
-    borderRadius: 8,
+    height: 120,
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: Colors.glassBorder,
+    borderWidth: 1,
   },
 });

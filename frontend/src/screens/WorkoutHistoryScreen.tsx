@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, SafeAreaView } from 'react-native';
 import { Colors } from '../theme/colors';
 import { Typography } from '../theme/typography';
 import axios from 'axios';
@@ -27,48 +27,82 @@ export default function WorkoutHistoryScreen() {
 
   const renderItem = ({ item }: any) => (
     <View style={styles.card}>
-      <View>
+      <View style={{ flex: 1 }}>
         <Text style={styles.workoutType}>{item.type}</Text>
-        <Text style={styles.date}>{new Date(item.timestamp).toLocaleDateString()}</Text>
+        <Text style={styles.date}>{new Date(item.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
       </View>
       <View style={{ alignItems: 'flex-end' }}>
-        <Text style={styles.volume}>{item.volume} kg</Text>
-        <Text style={styles.label}>Total Volume</Text>
+        <Text style={styles.volume}>{item.volume}</Text>
+        <Text style={styles.label}>Total Volume (kg)</Text>
       </View>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Workout History</Text>
-      {loading ? (
-        <ActivityIndicator color={Colors.primary as string} size="large" />
-      ) : (
-        <FlatList
-          data={workouts}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={{ paddingBottom: 20 }}
-        />
-      )}
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Workout History</Text>
+        {loading ? (
+          <View style={styles.loaderContainer}>
+            <ActivityIndicator color={Colors.electricLime} size="large" />
+          </View>
+        ) : (
+          <FlatList
+            data={workouts}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={{ paddingBottom: 40 }}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.background, padding: 20 },
-  title: { ...Typography.h1, color: Colors.text, marginBottom: 30, marginTop: 40 },
+  safeArea: { flex: 1, backgroundColor: Colors.background },
+  container: { flex: 1, paddingHorizontal: 24 },
+  title: { 
+    ...Typography.headlineLg, 
+    color: Colors.text, 
+    marginBottom: 32, 
+    marginTop: 20 
+  },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   card: {
-    backgroundColor: Colors.surface,
-    padding: 15,
-    borderRadius: 12,
+    backgroundColor: Colors.glassSurface,
+    borderColor: Colors.glassBorder,
+    borderWidth: 1,
+    padding: 20,
+    borderRadius: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12
+    marginBottom: 16
   },
-  workoutType: { ...Typography.h3, color: Colors.text },
-  date: { ...Typography.caption, color: Colors.textSecondary },
-  volume: { color: Colors.primary as string, fontWeight: 'bold', fontSize: 18 },
-  label: { fontSize: 10, color: Colors.textSecondary, textTransform: 'uppercase' }
+  workoutType: { 
+    ...Typography.headlineMd, 
+    fontSize: 20,
+    color: Colors.text,
+    marginBottom: 4
+  },
+  date: { 
+    ...Typography.bodyMd, 
+    color: Colors.textDim 
+  },
+  volume: { 
+    ...Typography.statsNumber, 
+    fontSize: 24,
+    color: Colors.electricLime 
+  },
+  label: { 
+    ...Typography.labelBold, 
+    fontSize: 10,
+    color: Colors.textDim,
+  }
 });

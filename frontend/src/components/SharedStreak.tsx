@@ -35,7 +35,9 @@ export const SharedStreak: React.FC<SharedStreakProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.glassSurface,
+    borderColor: Colors.glassBorder,
+    borderWidth: 1,
     borderRadius: 24,
     padding: 24,
     flexDirection: 'row',
@@ -47,28 +49,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emoji: {
-    fontSize: 32,
+    fontSize: 40,
     marginRight: 16,
+    textShadowColor: Colors.radiumPink,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   streakNumber: {
-    fontSize: Typography.h1.fontSize,
-    fontWeight: Typography.h1.fontWeight,
-    color: Colors.primary,
-    lineHeight: Typography.h1.fontSize,
+    ...Typography.statsNumber,
+    color: Colors.radiumPink,
   },
   streakLabel: {
-    fontSize: 14,
-    color: Colors.outline, // Using outline as on-surface-variant equivalent
+    ...Typography.labelBold,
+    color: Colors.textDim,
   },
   statusContainer: {
-    maxWidth: 140,
+    maxWidth: 160,
   },
   statusText: {
-    fontSize: Typography.body.fontSize,
-    color: Colors.primary,
+    ...Typography.bodyMd,
+    color: Colors.text,
     textAlign: 'right',
   },
   boldText: {
     fontWeight: 'bold',
+    color: Colors.neonPurple,
   },
 });

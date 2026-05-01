@@ -5,14 +5,11 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-  Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../theme/colors';
 import { Typography } from '../theme/typography';
 import { StatusBar } from 'expo-status-bar';
-
-const { width } = Dimensions.get('window');
 
 const OnboardingScreen = ({ navigation }: any) => {
   return (
@@ -21,7 +18,7 @@ const OnboardingScreen = ({ navigation }: any) => {
       <ImageBackground
         source={{ uri: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop' }}
         style={styles.backgroundImage}
-        imageStyle={{ opacity: 0.4 }}
+        imageStyle={{ opacity: 0.3 }}
       >
         <View style={styles.overlay}>
           <SafeAreaView style={styles.safeArea}>
@@ -34,10 +31,12 @@ const OnboardingScreen = ({ navigation }: any) => {
 
             <View style={styles.features}>
               <View style={styles.glassPanel}>
-                <Text style={styles.featureText}>Shared Streaks</Text>
+                <Text style={styles.featureTitle}>Shared Streaks</Text>
+                <Text style={styles.featureDesc}>Sync your grind and keep the flame alive.</Text>
               </View>
               <View style={styles.glassPanel}>
-                <Text style={styles.featureText}>Weekly MVP</Text>
+                <Text style={styles.featureTitle}>Competitive Heatmaps</Text>
+                <Text style={styles.featureDesc}>Visualize strain and out-train your partner.</Text>
               </View>
             </View>
 
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(19, 19, 21, 0.7)',
+    backgroundColor: 'rgba(19, 19, 21, 0.75)',
   },
   safeArea: {
     flex: 1,
@@ -91,21 +90,19 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   title: {
-    fontSize: Typography.h1.fontSize,
-    fontWeight: Typography.h1.fontWeight,
-    color: Colors.primary,
-    fontStyle: 'italic',
-    textShadowColor: 'rgba(195, 244, 0, 0.4)',
+    ...Typography.displayXl,
+    color: Colors.electricLime,
+    textShadowColor: 'rgba(204, 255, 0, 0.4)',
     textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 12,
+    textShadowRadius: 15,
   },
   subtitle: {
-    fontSize: Typography.body.fontSize,
-    color: Colors.primary,
+    ...Typography.bodyLg,
+    color: Colors.text,
     textAlign: 'center',
-    marginTop: 8,
-    opacity: 0.8,
-    maxWidth: 280,
+    marginTop: 12,
+    opacity: 0.9,
+    maxWidth: 300,
   },
   features: {
     flex: 1,
@@ -113,16 +110,20 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   glassPanel: {
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    borderRadius: 12,
-    padding: 20,
+    backgroundColor: Colors.glassSurface,
+    borderRadius: 16,
+    padding: 24,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: Colors.glassBorder,
   },
-  featureText: {
-    color: Colors.primary,
-    fontSize: Typography.body.fontSize,
-    fontWeight: '600',
+  featureTitle: {
+    ...Typography.headlineMd,
+    color: Colors.electricLime,
+    marginBottom: 4,
+  },
+  featureDesc: {
+    ...Typography.bodyMd,
+    color: Colors.textDim,
   },
   actions: {
     width: '100%',
@@ -131,43 +132,41 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
-    paddingVertical: 16,
-    borderRadius: 9999,
+    paddingVertical: 18,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
   primaryButton: {
-    backgroundColor: Colors.primary,
-    shadowColor: Colors.primary,
+    backgroundColor: Colors.electricLime,
+    shadowColor: Colors.electricLime,
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.4,
     shadowRadius: 20,
-    elevation: 5,
+    elevation: 8,
   },
   primaryButtonText: {
-    color: Colors.background,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 1.5,
+    color: '#000',
+    ...Typography.labelBold,
+    fontSize: 16,
   },
   secondaryButton: {
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: Colors.outline,
+    borderColor: Colors.glassBorder,
   },
   secondaryButtonText: {
-    color: Colors.primary,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 1.5,
+    color: Colors.text,
+    ...Typography.labelBold,
+    fontSize: 16,
   },
   skipButton: {
     alignItems: 'center',
     marginTop: 8,
   },
   skipText: {
-    color: Colors.primary,
-    opacity: 0.6,
+    ...Typography.bodyMd,
+    color: Colors.textDim,
     textDecorationLine: 'underline',
   },
 });
